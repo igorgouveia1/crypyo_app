@@ -35,7 +35,7 @@ class CryptoApp extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'CryptoApp',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
       body: SafeArea(
