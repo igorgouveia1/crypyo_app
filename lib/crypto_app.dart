@@ -23,6 +23,7 @@ class CryptoApp extends StatelessWidget {
         name: cryptoData['name'],
         price: cryptoData['quote']['USD']['price'],
         symbol: cryptoData['symbol'],
+        percent: cryptoData['quote']['USD']['percent_change_1h'],
       );
 
       cryptoinfo.add(crypto);
@@ -49,9 +50,21 @@ class CryptoApp extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Card(
                       child: ListTile(
-                        title: Text(cryptoinfo[index].symbol),
-                        subtitle: Text(cryptoinfo[index].name),
-                        trailing: Text((cryptoinfo[index].price).toString()),
+                        leading: Text(cryptoinfo[index].symbol,
+                            style: const TextStyle(fontSize: 16)),
+                        title: Text(cryptoinfo[index].name),
+                        subtitle: Text(
+                          (cryptoinfo[index].percent) > 0
+                              ? (cryptoinfo[index].percent).toStringAsFixed(2)
+                              : (cryptoinfo[index].percent).toStringAsFixed(2),
+                          style: TextStyle(
+                            color: (cryptoinfo[index].percent) > 0
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                        ),
+                        trailing: Text(
+                            'USD\$ ${(cryptoinfo[index].price).toStringAsFixed(2)}'),
                       ),
                     );
                   },
